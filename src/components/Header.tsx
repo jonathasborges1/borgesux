@@ -1,41 +1,91 @@
 
-import {Container, Row, Col, Stack } from 'react-bootstrap'
-import Logotipo from '../assets/logo_brand.png'
+import {Container, Row, Col} from 'react-bootstrap'
+
+import { Paper, Grid, styled} from '@mui/material'
+import { makeStyles } from '@material-ui/styles'
+//import { Logotipo } from '../assets/logobrand'
+
+const Logotipo = require('../assets/logobrand.png')
 
 export default function Header(){
-    const myContainer = {
-        border: '2px solid red', 
-    }
-    const myRow = {
+
+    const myContainerRow = {
         border: '2px solid blue', 
     }
-    const myCol = {
-        border: '2px solid yellow', 
+    const myContainerRowCol = {
+        border: '2px solid yellow',
+        alignSel: 'end',
     }
     const myElement = {
         border: '2px solid white', 
     }
-    const myElementLogotipo = {
-        //border: '2px solid white', 
-        width: '72px',
-        height: '72px',
+
+    const landingtopv2header = {
+        border: '2px solid green', 
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'center',
     }
-    const myElementLogotipoText = {
-        //marginLeft: '-12px',
-    }
+
+    const classes = useStyles();
     return(
         <>
-        <Container className="" style={myContainer}> 
-                <Row className=" px-2" style={myRow}> 
-                    <Col className='mx-1 d-flex ' style={myCol} xs={5} sm={4} md={4} lg={3}> 
-                        <img className='m-n1' style={myElementLogotipo}  src={Logotipo} alt="logotipo"  /> 
-                        <h6 className='m-n5 align-self-center' style={myElementLogotipoText} > Borgesux </h6> 
+        <Grid>
+            <Grid  className={`${classes.root} ${'d-frex'}`}  alignItems='center'>
+                <Item >
+                    <img src={Logotipo} alt="Logotipo" />
+                </Item >
+                <Item >
+                    <h6>BorgesUX</h6>
+                </Item>
+            </Grid>
+
+            <Grid item xs="auto">
+                <Item>xs=6</Item>
+            </Grid>
+        </Grid>
+
+
+        <Container> 
+                <Row className="px-1 mx-0" style={myContainerRow}>
+
+                    <Col className='py-4 px-1 mx-0' style={myContainerRowCol} xs={6} sm={4} md={4} lg={3}> 
+                        <span className='align-items-end' style={myElement}>bloco 2</span> 
                     </Col>
 
-                    <Col className='mx-2 justify-content-center align-self-center' style={myCol} xs={5} sm={4} md={4} lg={3}> <span> bloco 2 </span> </Col>
+                    <Col className='py-4 px-1 mx-2 my-2' style={myContainerRowCol} xs={5} >
+                        <div  >
+                            <span style={landingtopv2header}>bloco 3</span>
+                        </div>
+                    </Col>
                 </Row>
         </Container>
-            <h1>Hello World</h1>
+
+ 
         </>
     )
 }
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        background: 'black',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        fontFamily: 'Nunito',
+      },
+    grid: {
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        display: "flex",
+        justifyContent: "space-between",
+      },
+}));
+
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
